@@ -38,11 +38,11 @@ public class AgendaController {
     
     public void atualizaAluno() {
         
-        // busca clientes no BD
+        // busca alunos no BD
         DAOALuno alunodao = new DAOALuno();
         ArrayList<Aluno> alunos = alunodao.selectAll();
         
-        // exibir clientes no Combox cliente
+        // exibir alunos no Combox cliente
        helper.alunos(alunos);
     }
     
