@@ -13,6 +13,11 @@ public class Bibliotecario extends Pessoa{
     private Integer id;
     private String senha;
 
+    public Bibliotecario(String senha, String nome) {
+        super(nome);
+        this.senha = senha;
+    }
+
     public Bibliotecario(Integer id, String nome, String senha,  String CPF, String endereco) {
         super(nome, CPF, endereco);
         this.id = id;

@@ -30,4 +30,8 @@ public class Aluno extends Pessoa{
         this.RA = RA;
     }
 
+    @Override
+    public String toString() {
+        return getNome();
+    }
 }

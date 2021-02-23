@@ -5,6 +5,7 @@
  */
 package controller;
 
+
 import model.dao.DAOBibliotecario;
 import controller.helper.LoginHelper;
 import model.Bibliotecario;
@@ -15,7 +16,7 @@ import view.Menu;
  *
  * @author Uso Exclusivo
  */
-public class LoginController {
+public class LoginController{
 
     private final Login view;
     private final LoginHelper helper;
@@ -41,7 +42,7 @@ public class LoginController {
             view.dispose();
         }//se não usuário ou senha inválidos
         else{
-            System.out.println("Busquei algo no banco");
+            //System.out.println("Busquei algo no banco");
             this.view.exibeMensagem("Usuário ou senha inválidos!");
         }
         

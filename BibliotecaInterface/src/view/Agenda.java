@@ -5,17 +5,27 @@
  */
 package view;
 
+import controller.AgendaController;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Uso Exclusivo
  */
 public class Agenda extends javax.swing.JFrame {
 
+    private final AgendaController controller;
+
     /**
      * Creates new form Agenda
      */
     public Agenda() {
         initComponents();
+        controller = new AgendaController(this);
+        iniciar();
     }
 
     /**
@@ -31,93 +41,111 @@ public class Agenda extends javax.swing.JFrame {
         jButtonEmprestar = new javax.swing.JButton();
         jComboBoxNome = new javax.swing.JComboBox<>();
         jScrollPaneLivros = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        TabelaEmprestimos = new javax.swing.JTable();
         jTextFieldDataDevolucao = new javax.swing.JTextField();
-        jTextFieldRA = new javax.swing.JTextField();
         jLabelDataDevolucao = new javax.swing.JLabel();
         jLabelDataEmprestimo = new javax.swing.JLabel();
+        jComboBoxLivros = new javax.swing.JComboBox<>();
+        jLabelLivros = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
         jLabelEmprestimo = new javax.swing.JLabel();
-        jLabelRA = new javax.swing.JLabel();
         jLabelFundo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jFormattedTextFieldDATA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 230, 30));
+        getContentPane().add(jFormattedTextFieldDATA, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 230, 30));
 
         jButtonEmprestar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonEmprestar.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         jButtonEmprestar.setText("Emprestar");
+        jButtonEmprestar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEmprestarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonEmprestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
 
-        jComboBoxNome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", " " }));
         jComboBoxNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 230, 30));
+        getContentPane().add(jComboBoxNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 230, 30));
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaEmprestimos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Título", "Autor", "Área"
+                "Empréstimo", "RA", "Aluno", "Itens", "Data", "Hora", "Observação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPaneLivros.setViewportView(jTable);
+        jScrollPaneLivros.setViewportView(TabelaEmprestimos);
 
-        getContentPane().add(jScrollPaneLivros, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 410, 240));
-        getContentPane().add(jTextFieldDataDevolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 230, 30));
-
-        jTextFieldRA.setFont(new java.awt.Font("DialogInput", 0, 14)); // NOI18N
-        jTextFieldRA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRAActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldRA, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 230, 30));
+        getContentPane().add(jScrollPaneLivros, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 600, 240));
+        getContentPane().add(jTextFieldDataDevolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 230, 30));
 
         jLabelDataDevolucao.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         jLabelDataDevolucao.setText("Data Devolução");
-        getContentPane().add(jLabelDataDevolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        getContentPane().add(jLabelDataDevolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         jLabelDataEmprestimo.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         jLabelDataEmprestimo.setText("Data Empréstimo");
-        getContentPane().add(jLabelDataEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        getContentPane().add(jLabelDataEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
+        jComboBoxLivros.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxLivrosItemStateChanged(evt);
+            }
+        });
+        jComboBoxLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxLivrosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxLivros, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 230, 30));
+
+        jLabelLivros.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        jLabelLivros.setText("Livros");
+        getContentPane().add(jLabelLivros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         jLabelNome.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         jLabelNome.setText("Nome");
-        getContentPane().add(jLabelNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        getContentPane().add(jLabelNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         jLabelEmprestimo.setFont(new java.awt.Font("DialogInput", 1, 36)); // NOI18N
         jLabelEmprestimo.setText("EMPRÉSTIMO");
         getContentPane().add(jLabelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
-
-        jLabelRA.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabelRA.setText("RA");
-        getContentPane().add(jLabelRA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-        getContentPane().add(jLabelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 833, 450));
+        getContentPane().add(jLabelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 990, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldRAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRAActionPerformed
-
     private void jComboBoxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxNomeActionPerformed
+
+    private void jComboBoxLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLivrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxLivrosActionPerformed
+
+    private void jComboBoxLivrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxLivrosItemStateChanged
+        // TODO add your handling code here:
+        //this.controller.atualizaCodigoLivro();
+    }//GEN-LAST:event_jComboBoxLivrosItemStateChanged
+
+    private void jButtonEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmprestarActionPerformed
+        // TODO add your handling code here:
+        this.controller.emprestar();
+    }//GEN-LAST:event_jButtonEmprestarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,18 +183,53 @@ public class Agenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TabelaEmprestimos;
     private javax.swing.JButton jButtonEmprestar;
+    private javax.swing.JComboBox<String> jComboBoxLivros;
     private javax.swing.JComboBox<String> jComboBoxNome;
     private javax.swing.JFormattedTextField jFormattedTextFieldDATA;
     private javax.swing.JLabel jLabelDataDevolucao;
     private javax.swing.JLabel jLabelDataEmprestimo;
     private javax.swing.JLabel jLabelEmprestimo;
     private javax.swing.JLabel jLabelFundo;
+    private javax.swing.JLabel jLabelLivros;
     private javax.swing.JLabel jLabelNome;
-    private javax.swing.JLabel jLabelRA;
     private javax.swing.JScrollPane jScrollPaneLivros;
-    private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextFieldDataDevolucao;
-    private javax.swing.JTextField jTextFieldRA;
     // End of variables declaration//GEN-END:variables
+
+    private void iniciar() {
+        this.controller.atualizarAgenda();
+        this.controller.atualizaAluno();
+        this.controller.atualizaLivros();
+        //this.controller.atualizaCodigoLivro();
+    }
+
+    public Object getTableEmprestimos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public JTable getTabelaEmprestimos() {
+        return TabelaEmprestimos;
+    }
+
+    public void setTabelaEmprestimos(JTable TabelaEmprestimos) {
+        this.TabelaEmprestimos = TabelaEmprestimos;
+    } 
+
+    public JComboBox<String> getjComboBoxLivros() {
+        return jComboBoxLivros;
+    }
+
+    public void setjComboBoxLivros(JComboBox<String> jComboBoxLivros) {
+        this.jComboBoxLivros = jComboBoxLivros;
+    }
+
+    public JComboBox<String> getjComboBoxNome() {
+        return jComboBoxNome;
+    }
+
+    public void setjComboBoxNome(JComboBox<String> jComboBoxNome) {
+        this.jComboBoxNome = jComboBoxNome;
+    }
 }

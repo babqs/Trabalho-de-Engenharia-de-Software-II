@@ -11,6 +11,7 @@ import model.Bibliotecario;
 import model.Emprestimo;
 import model.ItemEmprestimo;
 import model.Livro;
+import model.dao.Banco;
 
 /**
  *

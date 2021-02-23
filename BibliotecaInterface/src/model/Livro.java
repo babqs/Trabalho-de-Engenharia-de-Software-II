@@ -9,13 +9,34 @@ package model;
  *
  * @author Uso Exclusivo
  */
-public class Livro {
+public class Livro extends Titulo{
     private boolean exemplarBiblioteca;
     Titulo titulo;
 
-    public Livro(int codigo, String nome){
-        titulo = new Titulo(codigo, nome);
+    public Livro(Integer codigo, String nome) {
+        super(codigo, nome);
+        this.exemplarBiblioteca = exemplarBiblioteca;
+        
+        if(codigo == 1){
+            exemplarBiblioteca = true;
+        }
+        else{
+            exemplarBiblioteca = false;
+        }
     }
+
+    public Livro(Integer codigo, String nome, String isbn, Integer edicao, Integer ano, Integer prazo) {
+        super(codigo, nome, isbn, edicao, ano, prazo);
+        this.exemplarBiblioteca = exemplarBiblioteca;
+        
+        if(codigo == 1){
+            exemplarBiblioteca = true;
+        }
+        else{
+            exemplarBiblioteca = false;
+        }
+    }
+    
     public boolean isExemplarBiblioteca() {
         return exemplarBiblioteca;
     }
@@ -24,18 +45,17 @@ public class Livro {
         this.exemplarBiblioteca = exemplarBiblioteca;
     }
 
-    
-    public Integer getPrazo(){
-        return titulo.getPrazo();
-    }
-
     public Titulo getTitulo() {
         return titulo;
     }
 
+    public void setTitulo(Titulo titulo) {
+        this.titulo = titulo;
+    }
+
     @Override
     public String toString() {
-        return "Livro{" + "titulo=" + titulo + '}';
+        return getNome();
     }
     
     

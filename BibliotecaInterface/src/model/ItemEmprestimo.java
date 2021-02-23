@@ -15,21 +15,17 @@ public class ItemEmprestimo extends Emprestimo {
     private Livro livro;
     private Date dataDevolução;
 
-    public ItemEmprestimo(Livro livro, Date dataDevolução, Date dataEmprestimo) {
-        super(dataEmprestimo);
-        this.livro = livro;
-        this.dataDevolução = dataDevolução;
-    }
-
     public ItemEmprestimo(Livro livro, Date dataEmprestimo) {
         super(dataEmprestimo);
         this.livro = livro;
     }
     
+    @Override
     public Livro getLivro() {
         return livro;
     }
 
+    @Override
     public void setLivro(Livro livro) {
         this.livro = livro;
     }

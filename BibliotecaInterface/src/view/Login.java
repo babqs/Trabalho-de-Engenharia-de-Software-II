@@ -7,8 +7,9 @@ package view;
 
 import model.dao.Banco;
 import controller.LoginController;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setTitle("Biblioteca");
-        controller = new LoginController(this);
+        this.controller = new LoginController(this);
         Banco.inicia();
     }
 
@@ -57,6 +58,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BotaoEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 130, 30));
+
+        campoSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSenhaActionPerformed(evt);
+            }
+        });
         getContentPane().add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 220, -1));
 
         campoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -96,8 +103,11 @@ public class Login extends javax.swing.JFrame {
 
     private void BotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEntrarActionPerformed
         this.controller.entrarSistema();
-        //this.controller.fizTarefa();
     }//GEN-LAST:event_BotaoEntrarActionPerformed
+
+    private void campoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +139,7 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }
@@ -150,21 +161,19 @@ public class Login extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, mensagem);
     }
 
-    public JLabel getSenha() {
-        return senha;
+    public JPasswordField getCampoSenha() {
+        return campoSenha;
     }
 
-    public void setSenha(JLabel senha) {
-        this.senha = senha;
+    public void setCampoSenha(JPasswordField campoSenha) {
+        this.campoSenha = campoSenha;
     }
 
-    public JLabel getUsuario() {
-        return usuario;
+    public JTextField getCampoUsuario() {
+        return campoUsuario;
     }
 
-    public void setUsuario(JLabel usuario) {
-        this.usuario = usuario;
+    public void setCampoUsuario(JTextField campoUsuario) {
+        this.campoUsuario = campoUsuario;
     }
-    
-    
 }

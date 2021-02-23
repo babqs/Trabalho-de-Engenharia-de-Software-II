@@ -5,17 +5,21 @@
  */
 package view;
 
+import controller.MenuController;
+
 /**
  *
  * @author Uso Exclusivo
  */
 public class Menu extends javax.swing.JFrame {
 
+    private final MenuController controller;
     /**
      * Creates new form menu_principal
      */
     public Menu() {
         initComponents();
+        this.controller = new MenuController(this);
     }
 
     /**
@@ -32,8 +36,10 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastro = new javax.swing.JMenu();
         jMenuAluno = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuLivro = new javax.swing.JMenuItem();
         jMenuEmprestar = new javax.swing.JMenu();
+        jMenuAgenda = new javax.swing.JMenuItem();
+        jMenuRelatorio = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,14 +58,31 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuCadastro.add(jMenuAluno);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/two-books.png"))); // NOI18N
-        jMenuItem1.setText("Livro");
-        jMenuCadastro.add(jMenuItem1);
+        jMenuLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/two-books.png"))); // NOI18N
+        jMenuLivro.setText("Livro");
+        jMenuLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLivroActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuLivro);
 
         jMenuBar1.add(jMenuCadastro);
 
         jMenuEmprestar.setText("Emprestar");
+
+        jMenuAgenda.setText("Agenda");
+        jMenuAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAgendaActionPerformed(evt);
+            }
+        });
+        jMenuEmprestar.add(jMenuAgenda);
+
         jMenuBar1.add(jMenuEmprestar);
+
+        jMenuRelatorio.setText("Relatório");
+        jMenuBar1.add(jMenuRelatorio);
 
         setJMenuBar(jMenuBar1);
 
@@ -68,7 +91,18 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAlunoActionPerformed
         // TODO add your handling code here:
+        this.controller.irParaCadastrarAluno();
     }//GEN-LAST:event_jMenuAlunoActionPerformed
+
+    private void jMenuAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAgendaActionPerformed
+        // TODO add your handling code here:
+        this.controller.irParaAgenda();
+    }//GEN-LAST:event_jMenuAgendaActionPerformed
+
+    private void jMenuLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLivroActionPerformed
+        // TODO add your handling code here:
+        this.controller.irParacadastrarLivro();
+    }//GEN-LAST:event_jMenuLivroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,6 +136,7 @@ public class Menu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Menu().setVisible(true);
             }
@@ -111,10 +146,12 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelIconLivro;
+    private javax.swing.JMenuItem jMenuAgenda;
     private javax.swing.JMenuItem jMenuAluno;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenu jMenuEmprestar;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuLivro;
+    private javax.swing.JMenu jMenuRelatorio;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
 package controller;
 
 import view.Agenda;
+import view.Aluno;
+import view.Livro;
 import view.Menu;
 
 /**
@@ -23,5 +25,15 @@ public class MenuController {
     public void irParaAgenda(){
         Agenda agenda = new Agenda();
         agenda.setVisible(true);
+    }
+    
+    public void irParaCadastrarAluno(){
+        Aluno aluno = new Aluno();
+        aluno.setVisible(true);
+    }
+    
+    public void irParacadastrarLivro(){
+        Livro livro = new Livro();
+        livro.setVisible(true);
     }
 }

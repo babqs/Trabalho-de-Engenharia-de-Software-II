@@ -21,8 +21,8 @@ public class Titulo {
         this.nome = nome;
     }
 
-    public Titulo(Integer prazo, String isbn, Integer edicao, Integer ano, String nome) {
-        this.prazo = prazo;
+    public Titulo(Integer codigo, String nome, String isbn, Integer edicao, Integer ano, Integer prazo) {
+        this.prazo = codigo++;
         this.isbn = isbn;
         this.edicao = edicao;
         this.ano = ano;
@@ -61,5 +61,14 @@ public class Titulo {
         this.ano = ano;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    
     
 }
